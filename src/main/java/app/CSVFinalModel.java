@@ -1,26 +1,19 @@
 package app;
 
-import java.util.List;
+import java.util.Objects;
 
-public class CSVModel {
-private int yearOfBirth;
-private String gender;
-private String ethnicity;
-private String firstName;
-private int count;
-private int rank;
+public class CSVFinalModel {
+    private int yearOfBirth;
+    private String gender;
+    private String firstName;
+    private int count;
 
-private List<CSVModel> csvModels;
 
-    public CSVModel(){}
-
-    public CSVModel(int yearOfBirth, String gender, String ethnicity, String firstName, int count, int rank) {
+    public CSVFinalModel(int yearOfBirth, String gender, String firstName, int count) {
         this.yearOfBirth = yearOfBirth;
         this.gender = gender;
-        this.ethnicity = ethnicity;
         this.firstName = firstName;
         this.count = count;
-        this.rank = rank;
     }
 
     public int getYearOfBirth() {
@@ -39,14 +32,6 @@ private List<CSVModel> csvModels;
         this.gender = gender;
     }
 
-    public String getEthnicity() {
-        return ethnicity;
-    }
-
-    public void setEthnicity(String ethnicity) {
-        this.ethnicity = ethnicity;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -63,33 +48,28 @@ private List<CSVModel> csvModels;
         this.count = count;
     }
 
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public List<CSVModel> getCsvModels() {
-        return csvModels;
-    }
-
-    public void setCsvModels(List<CSVModel> csvModels) {
-        this.csvModels = csvModels;
-    }
 
     @Override
     public String toString() {
         return "CSVModel{" +
                 "yearOfBirth='" + yearOfBirth + '\'' +
                 ", gender='" + gender + '\'' +
-                ", ethnicity='" + ethnicity + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", count=" + count +
-                ", rank=" + rank +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CSVFinalModel csvFinalModel = (CSVFinalModel) o;
+        return Objects.equals(gender, csvFinalModel.gender) &&
+                Objects.equals(firstName, csvFinalModel.firstName);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(gender, firstName);
+    }
 }

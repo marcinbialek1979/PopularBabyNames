@@ -8,10 +8,10 @@ import java.util.List;
 
 public class CSVUtils {
 
-    private List<CSVModel> csvModels;
 
-    public List<CSVModel> readFromCsv(String CSVFilePath) {
-        csvModels = new ArrayList<>();
+    public List<CSVFinalModel> createListFromCSVFile(String CSVFilePath) {
+
+        List<CSVFinalModel> csvFinalModels = new ArrayList<>();
 
         try (
                 final var fileReader = new FileReader(CSVFilePath);
@@ -23,29 +23,32 @@ public class CSVUtils {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.toUpperCase().split(",");
-
-                addCsvModelToList(createCSVModel(data));
+                mergeDuplicates(csvFinalModels, createCSVModel(data));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return csvModels;
+
+        return csvFinalModels;
     }
 
-    private CSVModel createCSVModel(String[] data) {
+    private CSVFinalModel createCSVModel(String[] data) {
 
         int yearOfBirth = Integer.parseInt(data[0]);
         String gender = data[1];
-        String ethnicity = data[2];
-        String firstName = data[3];
-        int count = Integer.parseInt(data[4]);
-        int rank = Integer.parseInt(data[5]);
-        return new CSVModel(yearOfBirth, gender, ethnicity, firstName, count, rank);
+        String firstName = data[2];
+        int count = Integer.parseInt(data[3]);
+        return new CSVFinalModel(yearOfBirth, gender, firstName, count);
     }
 
-    private void addCsvModelToList(CSVModel csvModel) {
-        csvModels.add(csvModel);
+    private void mergeDuplicates(List<CSVFinalModel> csvFinalModels, CSVFinalModel csvFinalModel) {
+        if (csvFinalModels.contains(csvFinalModel)) {
+            int indexToUpdate = csvFinalModels.indexOf(csvFinalModel);
+            int newCount = csvFinalModels.get(indexToUpdate).getCount() + csvFinalModel.getCount();
+            csvFinalModels.get(indexToUpdate).setCount(newCount);
+        } else {
+            csvFinalModels.add(csvFinalModel);
+        }
     }
-
 
 }
