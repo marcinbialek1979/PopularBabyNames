@@ -8,10 +8,9 @@ import java.util.List;
 
 public class CSVUtils {
 
-    List<CSVModel> csvModels;
+    private List<CSVModel> csvModels;
 
-    List<CSVModel> readFromCsv(String CSVFilePath) {
-
+    public List<CSVModel> readFromCsv(String CSVFilePath) {
         csvModels = new ArrayList<>();
 
         try (
@@ -20,11 +19,12 @@ public class CSVUtils {
         ) {
             // Skip the first line from CSVFile
             bufferedReader.readLine();
-            String line;
 
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.toUpperCase().split(",");
-                csvModels.add(createCSVModel(data));
+
+                addCsvModelToList(createCSVModel(data));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,15 +32,19 @@ public class CSVUtils {
         return csvModels;
     }
 
-    CSVModel createCSVModel(String[] data) {
+    private CSVModel createCSVModel(String[] data) {
 
-        String yearOfBirth = data[0];
+        int yearOfBirth = Integer.parseInt(data[0]);
         String gender = data[1];
         String ethnicity = data[2];
         String firstName = data[3];
         int count = Integer.parseInt(data[4]);
         int rank = Integer.parseInt(data[5]);
         return new CSVModel(yearOfBirth, gender, ethnicity, firstName, count, rank);
+    }
+
+    private void addCsvModelToList(CSVModel csvModel) {
+        csvModels.add(csvModel);
     }
 
 

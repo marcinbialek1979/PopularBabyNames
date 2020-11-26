@@ -3,7 +3,7 @@ package app;
 import java.util.List;
 
 public class CSVModel {
-private String yearOfBirth;
+private int yearOfBirth;
 private String gender;
 private String ethnicity;
 private String firstName;
@@ -14,7 +14,7 @@ private List<CSVModel> csvModels;
 
     public CSVModel(){}
 
-    public CSVModel(String yearOfBirth, String gender, String ethnicity, String firstName, int count, int rank) {
+    public CSVModel(int yearOfBirth, String gender, String ethnicity, String firstName, int count, int rank) {
         this.yearOfBirth = yearOfBirth;
         this.gender = gender;
         this.ethnicity = ethnicity;
@@ -23,11 +23,11 @@ private List<CSVModel> csvModels;
         this.rank = rank;
     }
 
-    public String getYearOfBirth() {
+    public int getYearOfBirth() {
         return yearOfBirth;
     }
 
-    public void setYearOfBirth(String yearOfBirth) {
+    public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 
