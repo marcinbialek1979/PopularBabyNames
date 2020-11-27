@@ -36,8 +36,8 @@ public class CSVUtils {
 
         int yearOfBirth = Integer.parseInt(data[0]);
         String gender = data[1];
-        String firstName = data[2];
-        int count = Integer.parseInt(data[3]);
+        String firstName = data[3];
+        int count = Integer.parseInt(data[4]);
         return new CSVFinalModel(yearOfBirth, gender, firstName, count);
     }
 
