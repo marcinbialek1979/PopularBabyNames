@@ -13,7 +13,7 @@ public class Calculate {
         System.out.println("Most 10 popular baby names:");
         csvFinalModels.stream()
                 .sorted(Comparator.comparingInt(CSVFinalModel::getCount).reversed())
-                .limit(3)
+                .limit(10)
                 .forEach(System.out::println);
     }
 
