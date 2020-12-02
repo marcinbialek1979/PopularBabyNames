@@ -1,4 +1,5 @@
-Wyzwanie
+Wyzwanie:
+
 Pod adresem https://catalog.data.gov/dataset/most-popular-baby-names-by-sex-and-mothers-ethnic-group-new-york-city-8c742 znajdują się dane na temat imion nadawanych nowo urodzonym dzieciom w latach 2011-2016 w Nowym Jorku. Dane uwzględniają dodatkowo etniczność matki.
 
 Napisz program, który wyświetli następujące statystyki:
